@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./index.css";
+import { Images } from "./assets/Images";
+import { Title } from "./components/Title";
+import { Menu } from "./components/Menu";
+import { FlashCards } from "./components/FlashCards";
+import { Footer } from "./components/Footer";
 
-function App() {
+export default function App() {
+  const [filteredItems, setFilteredItems] = useState(Images); // State for filtered items
+  const [sortBy, setSortBy] = useState("all");
+
+  const handleSortChange = (e) => {
+    const selectedValue = e.target.value;
+    setSortBy(selectedValue);
+
+    // Filter the items based on the selected option
+    let filteredData = [];
+
+    if (selectedValue === "all") {
+      filteredData = Images; // Replace 'Images' with your actual data source
+    } else {
+      filteredData = Images.filter((item) => item.game.includes(selectedValue));
+    }
+
+    filteredData.sort((a, b) => {
+      // Assuming the 'game' property is an array of game options
+      const indexOfA = a.game.indexOf(selectedValue);
+      const indexOfB = b.game.indexOf(selectedValue);
+      return indexOfA - indexOfB;
+    });
+
+    setFilteredItems(filteredData);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Title />
+      <Menu sortBy={sortBy} onSort={handleSortChange} />
+      <FlashCards filteredItems={filteredItems} />
+      <Footer />
     </div>
   );
 }
-
-export default App;
