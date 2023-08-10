@@ -3,8 +3,8 @@ export const Images = [
     id: 3457,
     name: "Sora",
     image:
-      "https://www.khdatabase.com/images/thumb/c/cb/Sora_07_KHIII.png/320px-Sora_07_KHIII.png",
-    desc: "",
+      "https://www.khdatabase.com/images/thumb/3/3f/Sora_06_KHIII.png/320px-Sora_06_KHIII.png",
+    desc: "Sora is a young boy from Destiny Islands",
     game: ["one", "com", "two", "coded", "ddd", "three", "mom"],
   },
   {

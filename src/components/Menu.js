@@ -1,7 +1,12 @@
-export function Menu({ sortBy, onSort }) {
+export function Menu({ sortBy, char, onSort, onSearch }) {
   return (
     <div className="menu">
-      <input type="text" placeholder="Search..."></input>
+      <input
+        type="text"
+        placeholder="Search..."
+        value={char}
+        onChange={onSearch}
+      ></input>
       <select value={sortBy} onChange={onSort}>
         <option value={"all"}>All</option>
         <option value={"one"}>Kingdom Hearts I</option>

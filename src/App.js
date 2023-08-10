@@ -9,6 +9,18 @@ import { Footer } from "./components/Footer";
 export default function App() {
   const [filteredItems, setFilteredItems] = useState(Images); // State for filtered items
   const [sortBy, setSortBy] = useState("all");
+  const [char, setChar] = useState("");
+
+  function handleSearchItems(e) {
+    const searchValue = e.target.value;
+    setChar(searchValue);
+
+    const filteredData = Images.filter((item) =>
+      item.name.toLowerCase().includes(searchValue.toLowerCase())
+    );
+
+    setFilteredItems(filteredData);
+  }
 
   const handleSortChange = (e) => {
     const selectedValue = e.target.value;
@@ -36,7 +48,12 @@ export default function App() {
   return (
     <div className="app">
       <Title />
-      <Menu sortBy={sortBy} onSort={handleSortChange} />
+      <Menu
+        sortBy={sortBy}
+        char={char}
+        onSort={handleSortChange}
+        onSearch={handleSearchItems}
+      />
       <FlashCards filteredItems={filteredItems} />
       <Footer />
     </div>
