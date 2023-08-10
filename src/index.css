@@ -182,6 +182,9 @@ div.selected {
   flex-direction: row;
 }
 
-.social-media p {
+.social-media a {
+  margin-left: 5px;
   margin-right: 20px;
+  color: var(--color-creamson);
+  text-decoration: none;
 }
